@@ -68,3 +68,28 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+Additional notes/ideas for improvement:
+
+Ask: Are you a student or alumni
+    If student then just continue to website and select department/major
+    If alumni then ask if they've made a profile
+        If so - let them log in
+        If not - make username/password and quick profile with personal info
+
+    Personal info: Name, age range (22-26, 27-32, 32-40, etc.), jobs (tasks, timeline), hobbies
+
+
+
+
+Clicking on logo image is hyperlinked to UND website
+Clicking on the either of words "Alumni" or "Addition" hyperlinks to landing page
+Select department in dropdown THEN select major in dropdown below that? Only selecting department has all major profiles
+
+Research
+    Node.js / Express setup for POST request (containing image(s) and public personal info)
+    Cloud storage like Amazon S3
+    Create routes to serve the uploaded images and text back to the React app for display
+    Fetch the data (image URLs and text) when needed and display them in your React components
