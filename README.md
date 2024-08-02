@@ -79,8 +79,12 @@ Ask: Are you a student or alumni
         If so - let them log in
         If not - make username/password and quick profile with personal info
 
-    Personal info: Name, age range (22-26, 27-32, 32-40, etc.), jobs (tasks, timeline), hobbies
+    Personal info: Department, major n' minor, clubs, year graduated, jobs (tasks, timeline), hobbies
 
+
+
+    Students use UND login to get in, alumni make an account, alumni can see other profiles but not contact info
+    Only students can see contact info which is why they will need UND login from database to get in
 
 
 
