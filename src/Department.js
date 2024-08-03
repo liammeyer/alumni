@@ -11,8 +11,6 @@ function Department() {
                 selectedMainCategory={name} 
                 selectedSubCategory={sub} 
             />
-            <h1>Department: {name}</h1>
-            {sub && <h2>Subcategory: {sub}</h2>}
         </div>
     );
 }

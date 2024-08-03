@@ -1,17 +1,21 @@
 .App {
-  text-align: center; /* Ensures text aligns to the center */
+  text-align: left; /* Align text to the left for content area */
   background-color: white;
+  display: flex; /* Ensures the app fills the entire vertical height */
+  flex-direction: column; /* Stacks header and content area vertically */
+  height: 100vh; /* Full screen height */
 }
 
 .App-header {
   background-color: white;
-  min-height: 100vh;
+  min-height: 5vh; /* Minimal header height */
   display: flex;
   flex-direction: column;
   align-items: center; /* Center align all items in the header */
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: black;
+  width: 100%; /* Ensure header spans full width */
 }
 
 .top-bar {
@@ -22,20 +26,38 @@
 }
 
 .hawk {
-  width: 500px;
+  width: 500px; /* Adjusted for a more proportional look */
   height: auto;
-  margin-right: 20px; /* Adjust spacing if needed */
 }
 
 .alumni-additions {
-  font-size: 72px;
+  font-size: 60px; /* Adjusted font size for a less dominant header */
   margin: 0;
   color: black;
 }
 
 .content-area {
-  background-color: #dadada;
-  width: 100%;
-  padding: 30px; /* Adds padding around the content area */
-  box-sizing: border-box; /* Includes padding in width calculation */
+  background-color: #C0C0C0; /* Light grey background */
+  flex-grow: 1; /* Takes up remaining space */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns content to the left */
+  padding: 20px;
+  width: 100%; /* Ensures the content area spans the full width of its container */
+}
+
+.select-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;  
+  margin-left: 20px;       
+  margin-bottom: 10px;     
+}
+
+select {
+  width: auto; /* Allows each select to grow only as needed to fit its content */
+  min-width: 250px; /* Ensures a reasonable minimum width, adjust as needed */
+  padding: 8px 10px; /* Padding for better text visibility */
+  margin-bottom: 10px; /* Space between selects */
+  box-sizing: border-box; /* Includes padding in the width calculation */
 }

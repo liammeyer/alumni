@@ -8,11 +8,19 @@ function DepartmentSelection({ selectedMainCategory: initialMainCategory, select
 
   // Define mainCategories only once using useMemo
   const mainCategories = useMemo(() => ({
-    CollegeofArtsandSciences: ["Art and Design", "Music", "Theatre Arts"],
-    CollegeofBusinessandPublicAdministration: ["Accountancy", "Aviation Management"],
-    CollegeofEducationandHumanDevelopment: ["Early Education", "Higher Education"],
-    CollegeofEngineeringandMines: ["Computer Science", "Cybersecurity"],
+    CollegeOfArtsAndSciences: ["Art and Design", "Music", "Theatre Arts"],
+    CollegeOfBusinessAndPublicAdministration: ["Accountancy", "Aviation Management"],
+    CollegeOfEducationAndHumanDevelopment: ["Early Education", "Higher Education"],
+    CollegeOfEngineeringAndMines: ["Computer Science", "Cybersecurity"],
   }), []);
+
+  
+  // Function to format department names with spaces
+  const formatDepartmentName = (name) => {
+    // Insert a space before all caps, except for the first character
+    return name.replace(/(?<!^)([A-Z])/g, ' $1');
+  };
+  
 
   // Effect to update subcategories when initialMainCategory changes
   useEffect(() => {
@@ -35,19 +43,20 @@ const handleSubSelect = (event) => {
     navigate(`/home/departments/${selectedMainCategory}/${subCategory}`); // Corrected path
 };
 
-  return (
+
+return (
     <div>
       <select onChange={handleMainSelect} defaultValue={selectedMainCategory || ""}>
         <option value="" disabled>Select a Department</option>
         {Object.keys(mainCategories).map(key => (
-          <option key={key} value={key}>{key}</option>
+          <option key={key} value={key}>{formatDepartmentName(key)}</option>
         ))}
       </select>
       {selectedMainCategory && (
         <select onChange={handleSubSelect} defaultValue={initialSubCategory || "none"}>
           <option value="none">Select Subcategory (Optional)</option>
           {subcategories.map(sub => (
-            <option key={sub} value={sub}>{sub}</option>
+            <option key={sub} value={sub}>{formatDepartmentName(sub)}</option>
           ))}
         </select>
       )}
