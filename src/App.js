@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import HomePage from './HomePage';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import Home from './Home';
 import Department from './Department';
 import hawk from './hawk.jpg';
 import './App.css';
@@ -12,7 +12,7 @@ function App() {
 
   const mainCategories = {
     CollegeofArtsandSciences: ["Art and Design", "Music", "Theatre Arts"],
-    CollegeofBusinessandPublicAdministration: ["Accountancy", "Avitation Management"],
+    CollegeofBusinessandPublicAdministration: ["Accountancy", "Aviation Management"],
     CollegeofEducationandHumanDevelopment: ["Early Education", "Higher Education"],
     CollegeofEngineeringandMines: ["Computer Science", "Cybersecurity"],
   };
@@ -20,15 +20,15 @@ function App() {
   const handleMainSelect = (event) => {
     const category = event.target.value;
     setSelectedMainCategory(category);
-    navigate(`/department/${category}`);
+    navigate(`/home/department/${category}`);
   };
 
   const handleSubSelect = (event) => {
     const subCategory = event.target.value;
     if (subCategory === "none") {
-      navigate(`/department/${selectedMainCategory}`);
+      navigate(`/home/department/${selectedMainCategory}`);
     } else {
-      navigate(`/department/${selectedMainCategory}/${subCategory}`);
+      navigate(`/home/department/${selectedMainCategory}/${subCategory}`);
     }
   };
 
@@ -42,11 +42,9 @@ function App() {
         <div className="content-area">
           <select onChange={handleMainSelect} defaultValue="">
             <option value="" disabled>Select a Department</option>
-            <option value="CollegeofArtsandSciences">College of Arts and Sciences</option>
-            <option value="CollegeofBusinessandPublicAdministration">College of Business and Public Administration</option>
-            <option value="CollegeofEducationandHumanDevelopment">College of Education and Human Development</option>
-            <option value="CollegeofEngineeringandMines">College of Engineering and Mines</option>
-
+            {Object.keys(mainCategories).map(key => (
+              <option key={key} value={key}>{key}</option>
+            ))}
           </select>
           {selectedMainCategory && mainCategories[selectedMainCategory].length > 0 && (
             <select onChange={handleSubSelect} defaultValue="none">
@@ -57,8 +55,10 @@ function App() {
             </select>
           )}
           <Routes>
-            <Route path="/department/:name" element={<Department />} />
-            <Route path="/department/:name/:sub" element={<Department />} />
+            <Route path="/" element={<Navigate replace to="/home" />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/home/department/:name" element={<Department />} />
+            <Route path="/home/department/:name/:sub" element={<Department />} />
           </Routes>
         </div>
       </header>
