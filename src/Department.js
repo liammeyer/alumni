@@ -1,12 +1,15 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import DepartmentSelection from './DepartmentSelection'; // Ensure this matches the actual filename
 
 function Department() {
-  const { name, sub } = useParams(); // Access parameters from the route
+  const { name, sub } = useParams();
 
-  // Display the department name and subcategory name dynamically based on the route parameters
   return (
     <div>
+      <DepartmentSelection selectedMainCategory={name} selectedSubCategory={sub} />
+      <h1>Department: {name}</h1>
+      {sub && <h2>Subcategory: {sub}</h2>}
     </div>
   );
 }
