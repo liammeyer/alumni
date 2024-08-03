@@ -1,0 +1,15 @@
+.home-container h1 {
+    padding-top: 60px; /* Correct the comment to match the padding */
+    margin: 0; /* Removes any default margin */
+}
+
+.home-image {
+    width: 800px; /* Fixed width */
+    height: auto; /* Maintain aspect ratio */
+    margin: auto; /* Centering margin in all directions, might need adjustment based on layout */
+    display: block; /* Essential for using margin auto for centering */
+    position: relative; /* Relative positioning if needed for further adjustments */
+    top: 35%; /* Move down by half of the container height */
+    left: 35%;
+    transform: translateY(-50%); /* Adjust to exactly center by moving up half of its own height */
+}
