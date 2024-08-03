@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function DepartmentsSelection({ selectedMainCategory: initialMainCategory, selectedSubCategory: initialSubCategory }) {
+function DepartmentSelection({ selectedMainCategory: initialMainCategory, selectedSubCategory: initialSubCategory }) {
   const navigate = useNavigate();
   const [selectedMainCategory, setSelectedMainCategory] = useState(initialMainCategory || '');
   const [subcategories, setSubcategories] = useState([]);
 
-  // Memoize mainCategories to prevent unnecessary re-creations
+  // Define mainCategories only once using useMemo
   const mainCategories = useMemo(() => ({
     CollegeofArtsandSciences: ["Art and Design", "Music", "Theatre Arts"],
     CollegeofBusinessandPublicAdministration: ["Accountancy", "Aviation Management"],
@@ -14,6 +14,7 @@ function DepartmentsSelection({ selectedMainCategory: initialMainCategory, selec
     CollegeofEngineeringandMines: ["Computer Science", "Cybersecurity"],
   }), []);
 
+  // Effect to update subcategories when initialMainCategory changes
   useEffect(() => {
     if (initialMainCategory) {
       setSelectedMainCategory(initialMainCategory);
@@ -21,24 +22,23 @@ function DepartmentsSelection({ selectedMainCategory: initialMainCategory, selec
     }
   }, [initialMainCategory, mainCategories]);
 
+  // Handlers for selection changes
   const handleMainSelect = (event) => {
     const category = event.target.value;
     setSelectedMainCategory(category);
     setSubcategories(mainCategories[category] || []);
-    navigate(`/home/departments/${category}`);
-  };
+    navigate(`/home/departments/${category}`); // Corrected path
+};
 
-  const handleSubSelect = (event) => {
+const handleSubSelect = (event) => {
     const subCategory = event.target.value;
-    if (subCategory !== "none") {
-      navigate(`/home/departments/${selectedMainCategory}/${subCategory}`);
-    }
-  };
+    navigate(`/home/departments/${selectedMainCategory}/${subCategory}`); // Corrected path
+};
 
   return (
     <div>
       <select onChange={handleMainSelect} defaultValue={selectedMainCategory || ""}>
-        <option value="" disabled>Select a Departments</option>
+        <option value="" disabled>Select a Department</option>
         {Object.keys(mainCategories).map(key => (
           <option key={key} value={key}>{key}</option>
         ))}
@@ -55,4 +55,4 @@ function DepartmentsSelection({ selectedMainCategory: initialMainCategory, selec
   );
 }
 
-export default DepartmentsSelection;
+export default DepartmentSelection;
